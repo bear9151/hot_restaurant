@@ -3,7 +3,7 @@
 // npm packages that we will use to give our server useful functionality
 // ==============================================================================
 var express = require('express'),
-    body = require('body-parser');
+    bodyParser = require('body-parser');
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -31,10 +31,10 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // requre api routes, pass the app object to the module 
 // run the module's function to set our app routes
-require("/app/routing/apiRoutes")(app);
+require("./app/routing/apiRoutes.js")(app);
 
 //add require for html routes
-require("/app/routing/htmlRoutes")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
 // ==============================================================================
 // LISTENER
