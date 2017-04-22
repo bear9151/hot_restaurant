@@ -45,5 +45,14 @@ module.exports = function(app) {
 		return res.json(waitinglist);
 	})
 
+	app.get("/app/:customer?", function(req, res) {
+		if (tables.length <= 5) {
+			alert("FALSE");
+			return false;
+		} else {
+			alert("TRUE");
+			return true;
+		}
+	})
 
 };

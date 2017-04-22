@@ -44,18 +44,18 @@
 							</div>
 
 							<div class="form-group">
-								<label for="">Phone Number</label>
-								<input type="text" class="form-control" id="reserve_phone">
+								<label for="">Party Size</label>
+								<input type="text" class="form-control" id="size">
 							</div>
 
 							<div class="form-group">
-								<label for="">Email</label>
-								<input type="text" class="form-control" id="reserve_email">
+								<label for="">Time</label>
+								<input type="text" class="form-control" id="time">
 							</div>
 
 							<div class="form-group">
 								<label for="">Unique ID</label>
-								<input type="text" class="form-control" id="reserve_uniqueID">
+								<input type="text" class="form-control" id="routeName">
 							</div>
 
 							<button type="submit" class="btn btn-primary submit">Submit</button>
@@ -91,10 +91,10 @@
 
 		// Here we grab the form elements
 		var newReservation = {
-			customerName: $('#reserve_name').val().trim(),
-			phoneNumber: $('#reserve_phone').val().trim(),
-			customerEmail: $('#reserve_email').val().trim(),
-			customerID: $('#reserve_uniqueID').val().trim()
+			name: $('#reserve_name').val().trim(),
+			partySize: $('#size').val().trim(),
+			time: $('#time').val().trim(),
+			routeName: $('#routeName').val().trim().toLowerCase()
 		};
 
 		console.log(newReservation);
@@ -108,7 +108,7 @@
 		// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
 		var currentURL = window.location.origin;
 
-	    $.post(currentURL + "/api/tables", newReservation,
+	    $.post(currentURL + "/booking", newReservation,
 	    function(data){
 
 	    	// If a table is available... tell user they are booked.
@@ -123,9 +123,9 @@
 
 	    	// Clear the form when submitting
     		$('#reserve_name').val("");
-			$('#reserve_phone').val("");
-			$('#reserve_email').val("");
-			$('#reserve_uniqueID').val("");
+			$('#size').val("");
+			$('#time').val("");
+			$('#routeName').val("");
 
 	    });
 
