@@ -2,7 +2,8 @@
 // DEPENDENCIES
 // npm packages that we will use to give our server useful functionality
 // ==============================================================================
-
+var express = require('express'),
+    body = require('body-parser');
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -10,14 +11,17 @@
 // ==============================================================================
 
 // Tells node that we are creating an "express" server
-
+var app = express(),
 
 // Sets an initial port. We"ll use this later in our listener
-
+PORT = 3000;
 
 // BodyParser makes it possible for our server to interpret data sent to it.
 // Add the standard 4 lines of code to use bodyParser as middleware
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // ================================================================================
 // ROUTER
@@ -27,13 +31,15 @@
 
 // requre api routes, pass the app object to the module 
 // run the module's function to set our app routes
-require("./app/routing/apiRoutes")(app);
+require("/app/routing/apiRoutes")(app);
 
 //add require for html routes
+require("/app/routing/htmlRoutes")(app);
 
 // ==============================================================================
 // LISTENER
 // The below code effectively "starts" our server
 // ==============================================================================
-
-
+app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+});
